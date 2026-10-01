@@ -535,6 +535,9 @@ a {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
+    .hero, .footer {
+        background-attachment: scroll; /* Fix crucial pour que l'image s'affiche sur les iPhones et mobiles */
+    }
     .hero-title {
         font-size: 3rem;
     }
