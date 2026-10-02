@@ -313,6 +313,85 @@ a {
     }
 }
 
+/* --- SIMULATEUR DE FRET --- */
+.simulator-section {
+    padding: 60px 5%;
+    background: var(--bg-dark);
+}
+.simulator-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 223, 0, 0.2);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+.simulator-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.simulator-header h2 {
+    color: var(--gold);
+    font-family: var(--font-heading);
+    font-weight: normal;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+.simulator-header p {
+    color: var(--text-grey);
+}
+.input-group {
+    margin-bottom: 20px;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-white);
+}
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-white);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+.simulator-result {
+    margin-top: 30px;
+    background: rgba(255, 223, 0, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px dashed var(--gold);
+}
+.result-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+.result-line.total {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 15px;
+}
+.gold-text {
+    color: var(--gold);
+}
+.sim-note {
+    font-size: 0.8rem;
+    color: var(--text-grey);
+    text-align: center;
+    margin-top: 15px;
+}
+
 /* --- PRICING (L'Action) --- */
 .pricing {
     padding: 60px 5%;

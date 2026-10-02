@@ -38,7 +38,7 @@
             <p class="hero-subtitle">Ne jouez plus à la roulette russe avec votre capital sur Alibaba. SINOVARA audite vos fournisseurs, détruit les commissions cachées et protège vos conteneurs de la Chine jusqu'en Afrique.</p>
             <div class="hero-actions">
                 <a href="#tarifs" class="btn-primary">VOIR NOS OFFRES ↗</a>
-                <a href="javascript:void(0)" class="btn-secondary" onclick="alert('Chargement du calculateur de fret...')">Simulateur de Fret</a>
+                <a href="#simulateur" class="btn-secondary">Simulateur de Fret</a>
             </div>
         </div>
     </section>
@@ -61,6 +61,44 @@
                 <div class="service-icon">📦</div>
                 <h3>Blindage Logistique</h3>
                 <p>Aucun conteneur ne part sans notre validation. Inspection de la marchandise sur place et paperasse douanière gérée au millimètre.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulateur de Fret Section -->
+    <section id="simulateur" class="simulator-section">
+        <div class="simulator-container">
+            <div class="simulator-header">
+                <h2>🧮 SIMULATEUR DE FRET & DOUANE</h2>
+                <p>Estimez immédiatement vos coûts d'expédition (Chine ➔ Afrique) pour ne plus naviguer à l'aveugle.</p>
+            </div>
+            <div class="simulator-box">
+                <div class="input-group">
+                    <label>Volume estimé de la marchandise (en m³ / CBM)</label>
+                    <input type="number" id="sim-volume" placeholder="Ex: 5" min="1">
+                </div>
+                <div class="input-group">
+                    <label>Valeur totale de la marchandise (€)</label>
+                    <input type="number" id="sim-valeur" placeholder="Ex: 10000" min="100">
+                </div>
+                <div class="input-group">
+                    <label>Type d'expédition</label>
+                    <select id="sim-type">
+                        <option value="maritime">Maritime (LCL - Groupage)</option>
+                        <option value="aerien">Aérien (Fret Express)</option>
+                    </select>
+                </div>
+                <button class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="calculerFret()">CALCULER MON DEVIS</button>
+                
+                <div id="sim-result" class="simulator-result" style="display: none;">
+                    <h3>Estimation du Cabinet SINOVARA :</h3>
+                    <br>
+                    <div class="result-line"><span>Transport International :</span> <strong id="res-transport">0 €</strong></div>
+                    <div class="result-line"><span>Estimation Frais de Douane (15%) :</span> <strong id="res-douane">0 €</strong></div>
+                    <hr style="border-color: rgba(255,223,0,0.3); margin: 15px 0;">
+                    <div class="result-line total"><span>COÛT TOTAL ESTIMÉ :</span> <strong id="res-total" class="gold-text">0 €</strong></div>
+                    <p class="sim-note">*Ceci est une simulation indicative. Pour un prix garanti au centime près, réservez une mission d'Audit ou VIP.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -198,5 +236,34 @@
         </div>
     </footer>
 
+    <script>
+        function calculerFret() {
+            const volume = parseFloat(document.getElementById('sim-volume').value) || 0;
+            const valeur = parseFloat(document.getElementById('sim-valeur').value) || 0;
+            const type = document.getElementById('sim-type').value;
+
+            if (volume === 0 || valeur === 0) {
+                alert("Veuillez indiquer un volume et une valeur de marchandise pour lancer la simulation.");
+                return;
+            }
+
+            let transportCost = 0;
+            if (type === 'maritime') {
+                transportCost = volume * 250; // Prix indicatif : 250€ par m3 (CBM)
+            } else {
+                transportCost = volume * 1200; // Prix indicatif : 1200€ par m3 volumétrique en aérien
+            }
+
+            const douaneCost = valeur * 0.15; // 15% de frais de douane approx
+            const total = transportCost + douaneCost;
+
+            document.getElementById('res-transport').innerText = transportCost.toLocaleString('fr-FR') + " €";
+            document.getElementById('res-douane').innerText = douaneCost.toLocaleString('fr-FR') + " €";
+            document.getElementById('res-total').innerText = total.toLocaleString('fr-FR') + " €";
+            
+            // Affichage du bloc de résultat
+            document.getElementById('sim-result').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
